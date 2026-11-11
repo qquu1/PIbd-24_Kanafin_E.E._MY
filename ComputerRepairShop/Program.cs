@@ -24,6 +24,7 @@ namespace ComputerRepairShop
             container.RegisterType<IEmployeeRepository, EmployeeRepository>(new TransientLifetimeManager());
             container.RegisterType<ISparePartRepository, SparePartRepository>(new TransientLifetimeManager());
             container.RegisterType<IRepairOrderRepository, RepairOrderRepository>(new TransientLifetimeManager());
+            container.RegisterType<IWarehouseRepository, WarehouseRepository>(new TransientLifetimeManager());
 
             return container;
         }

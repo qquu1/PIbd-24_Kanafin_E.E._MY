@@ -1,5 +1,5 @@
 ﻿using ComputerRepairShop.Entities.Enums;
-
+//комплектующий
 namespace ComputerRepairShop.Entities
 {
     public class SparePart

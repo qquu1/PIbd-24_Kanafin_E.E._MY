@@ -7,14 +7,17 @@ namespace ComputerRepairShop.Forms.Orders
     public partial class FormRepairOrder : Form
     {
         private readonly IRepairOrderRepository _repairOrderRepository;
+        private readonly IWarehouseRepository _warehouseRepository;
 
         public FormRepairOrder(IRepairOrderRepository repairOrderRepository,
             IDeviceRepository deviceRepository,
             IEmployeeRepository employeeRepository,
-            ISparePartRepository sparePartRepository)
+            ISparePartRepository sparePartRepository,
+            IWarehouseRepository warehouseRepository)
         {
             InitializeComponent();
             _repairOrderRepository = repairOrderRepository ?? throw new ArgumentNullException(nameof(repairOrderRepository));
+            _warehouseRepository = warehouseRepository ?? throw new ArgumentNullException(nameof(warehouseRepository));
             StartPosition = FormStartPosition.CenterParent;
 
             comboBoxDevice.DataSource = deviceRepository.ReadDevices();
@@ -30,6 +33,12 @@ namespace ComputerRepairShop.Forms.Orders
             ColumnSparePart.DataSource = sparePartRepository.ReadSpareParts();
             ColumnSparePart.DisplayMember = "Name";
             ColumnSparePart.ValueMember = "Id";
+
+            comboBoxWarehouse.DataSource = _warehouseRepository.ReadWarehouses();
+            comboBoxWarehouse.DisplayMember = "Name";
+            comboBoxWarehouse.ValueMember = "Id";
+            comboBoxWarehouse.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxWarehouse.SelectedIndex = -1;
 
             dateTimePickerOrderDate.Enabled = false;
 
@@ -50,6 +59,16 @@ namespace ComputerRepairShop.Forms.Orders
                     throw new Exception("Имеются незаполненные поля");
                 }
 
+                Warehouse? selectedWarehouse = null;
+                if (comboBoxWarehouse.SelectedIndex >= 0)
+                {
+                    selectedWarehouse = _warehouseRepository.ReadWarehouseById(
+                        (int)comboBoxWarehouse.SelectedValue!);
+
+                    if (selectedWarehouse.AvailablePlaces <= 0)
+                        throw new Exception("На выбранном складе нет свободных мест");
+                }
+
                 var status = RepairStatus.None;
                 foreach (var elem in checkedListBoxStatus.CheckedItems)
                 {
@@ -60,6 +79,7 @@ namespace ComputerRepairShop.Forms.Orders
                     0,
                     (int)comboBoxDevice.SelectedValue!,
                     (int)comboBoxEmployee.SelectedValue!,
+                    selectedWarehouse?.Id,
                     status,
                     Convert.ToDecimal(numericUpDownTotalCost.Value),
                     CreateListOrderSparePartsFromDataGrid()));

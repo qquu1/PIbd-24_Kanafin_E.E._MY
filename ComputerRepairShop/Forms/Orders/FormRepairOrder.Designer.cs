@@ -6,10 +6,12 @@
         private Label labelDevice;
         private Label labelEmployee;
         private Label labelStatus;
+        private Label labelWarehouse;
         private Label labelDate;
         private Label labelTotalCost;
         private ComboBox comboBoxDevice;
         private ComboBox comboBoxEmployee;
+        private ComboBox comboBoxWarehouse;
         private CheckedListBox checkedListBoxStatus;
         private DateTimePicker dateTimePickerOrderDate;
         private NumericUpDown numericUpDownTotalCost;
@@ -31,10 +33,12 @@
             this.labelDevice = new Label();
             this.labelEmployee = new Label();
             this.labelStatus = new Label();
+            this.labelWarehouse = new Label();
             this.labelDate = new Label();
             this.labelTotalCost = new Label();
             this.comboBoxDevice = new ComboBox();
             this.comboBoxEmployee = new ComboBox();
+            this.comboBoxWarehouse = new ComboBox();
             this.checkedListBoxStatus = new CheckedListBox();
             this.dateTimePickerOrderDate = new DateTimePicker();
             this.numericUpDownTotalCost = new NumericUpDown();
@@ -74,28 +78,36 @@
             this.checkedListBoxStatus.Name = "checkedListBoxStatus";
             this.checkedListBoxStatus.Size = new Size(300, 94);
 
+            this.labelWarehouse.AutoSize = true;
+            this.labelWarehouse.Location = new Point(15, 195);
+            this.labelWarehouse.Text = "Склад:";
+
+            this.comboBoxWarehouse.Location = new Point(150, 192);
+            this.comboBoxWarehouse.Name = "comboBoxWarehouse";
+            this.comboBoxWarehouse.Size = new Size(300, 23);
+
             this.labelDate.AutoSize = true;
-            this.labelDate.Location = new Point(15, 195);
+            this.labelDate.Location = new Point(15, 230);
             this.labelDate.Text = "Дата:";
 
-            this.dateTimePickerOrderDate.Location = new Point(150, 192);
+            this.dateTimePickerOrderDate.Location = new Point(150, 227);
             this.dateTimePickerOrderDate.Name = "dateTimePickerOrderDate";
             this.dateTimePickerOrderDate.Size = new Size(300, 23);
 
             this.labelTotalCost.AutoSize = true;
-            this.labelTotalCost.Location = new Point(15, 230);
+            this.labelTotalCost.Location = new Point(15, 265);
             this.labelTotalCost.Text = "Итоговая стоимость:";
 
             this.numericUpDownTotalCost.DecimalPlaces = 2;
-            this.numericUpDownTotalCost.Location = new Point(150, 227);
+            this.numericUpDownTotalCost.Location = new Point(150, 262);
             this.numericUpDownTotalCost.Maximum = 1000000;
             this.numericUpDownTotalCost.Name = "numericUpDownTotalCost";
             this.numericUpDownTotalCost.Size = new Size(300, 23);
 
             this.groupBoxParts.Controls.Add(this.dataGridViewSpareParts);
-            this.groupBoxParts.Location = new Point(15, 265);
+            this.groupBoxParts.Location = new Point(15, 300);
             this.groupBoxParts.Name = "groupBoxParts";
-            this.groupBoxParts.Size = new Size(560, 200);
+            this.groupBoxParts.Size = new Size(560, 170);
             this.groupBoxParts.Text = "Запчасти";
 
             this.dataGridViewSpareParts.AllowUserToAddRows = true;
@@ -109,7 +121,7 @@
             this.dataGridViewSpareParts.MultiSelect = false;
             this.dataGridViewSpareParts.Name = "dataGridViewSpareParts";
             this.dataGridViewSpareParts.RowHeadersVisible = false;
-            this.dataGridViewSpareParts.Size = new Size(554, 178);
+            this.dataGridViewSpareParts.Size = new Size(554, 148);
 
             this.ColumnSparePart.HeaderText = "Запчасть";
             this.ColumnSparePart.Name = "ColumnSparePart";
@@ -140,6 +152,8 @@
             this.Controls.Add(this.comboBoxEmployee);
             this.Controls.Add(this.labelStatus);
             this.Controls.Add(this.checkedListBoxStatus);
+            this.Controls.Add(this.labelWarehouse);
+            this.Controls.Add(this.comboBoxWarehouse);
             this.Controls.Add(this.labelDate);
             this.Controls.Add(this.dateTimePickerOrderDate);
             this.Controls.Add(this.labelTotalCost);

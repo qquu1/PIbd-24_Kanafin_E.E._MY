@@ -1,5 +1,5 @@
-﻿namespace ComputerRepairShop.Entities
-{
+﻿namespace ComputerRepairShop.Entities;
+//связь 
     public class OrderSparePart
     {
         public int Id { get; private set; }
@@ -16,4 +16,3 @@
             };
         }
     }
-}

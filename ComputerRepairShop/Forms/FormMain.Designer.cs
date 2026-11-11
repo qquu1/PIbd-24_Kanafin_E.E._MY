@@ -9,6 +9,7 @@
         private ToolStripMenuItem menuDevices;
         private ToolStripMenuItem menuEmployees;
         private ToolStripMenuItem menuSpareParts;
+        private ToolStripMenuItem menuWarehouses;
         private ToolStripMenuItem menuOperations;
         private ToolStripMenuItem menuRepairOrders;
         private ToolStripMenuItem menuReports;
@@ -28,6 +29,7 @@
             menuDevices = new ToolStripMenuItem();
             menuEmployees = new ToolStripMenuItem();
             menuSpareParts = new ToolStripMenuItem();
+            menuWarehouses = new ToolStripMenuItem();
             menuOperations = new ToolStripMenuItem();
             menuRepairOrders = new ToolStripMenuItem();
             menuReports = new ToolStripMenuItem();
@@ -46,7 +48,7 @@
             // 
             // menuDirectories
             // 
-            menuDirectories.DropDownItems.AddRange(new ToolStripItem[] { menuClients, menuDevices, menuEmployees, menuSpareParts });
+            menuDirectories.DropDownItems.AddRange(new ToolStripItem[] { menuClients, menuDevices, menuEmployees, menuSpareParts, menuWarehouses });
             menuDirectories.Name = "menuDirectories";
             menuDirectories.Size = new Size(117, 24);
             menuDirectories.Text = "Справочники";
@@ -79,6 +81,13 @@
             menuSpareParts.Text = "Запчасти";
             menuSpareParts.Click += SparePartsToolStripMenuItem_Click;
             // 
+            // menuWarehouses
+            // 
+            menuWarehouses.Name = "menuWarehouses";
+            menuWarehouses.Size = new Size(170, 26);
+            menuWarehouses.Text = "Склады";
+            menuWarehouses.Click += WarehousesToolStripMenuItem_Click;
+            // 
             // menuOperations
             // 
             menuOperations.DropDownItems.AddRange(new ToolStripItem[] { menuRepairOrders });
@@ -110,8 +119,8 @@
             MainMenuStrip = menuStripMain;
             Margin = new Padding(3, 4, 3, 4);
             Name = "FormMain";
-            StartPosition = FormStartPosition.CenterScreen;
             Text = "Учет в фирме по ремонту компьютерной техники";
+            Load += FormMain_Load;
             menuStripMain.ResumeLayout(false);
             menuStripMain.PerformLayout();
             ResumeLayout(false);

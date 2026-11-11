@@ -3,6 +3,7 @@ using ComputerRepairShop.Forms.Devices;
 using ComputerRepairShop.Forms.Employees;
 using ComputerRepairShop.Forms.Orders;
 using ComputerRepairShop.Forms.SpareParts;
+using ComputerRepairShop.Forms.Warehouses;
 using Unity;
 
 namespace ComputerRepairShop.Forms
@@ -30,6 +31,9 @@ namespace ComputerRepairShop.Forms
         private void SparePartsToolStripMenuItem_Click(object sender, EventArgs e)
             => SafeOpen(() => _container.Resolve<FormSpareParts>().ShowDialog());
 
+        private void WarehousesToolStripMenuItem_Click(object sender, EventArgs e)
+            => SafeOpen(() => _container.Resolve<FormWarehouses>().ShowDialog());
+
         private void RepairOrdersToolStripMenuItem_Click(object sender, EventArgs e)
             => SafeOpen(() => _container.Resolve<FormRepairOrders>().ShowDialog());
 
@@ -40,6 +44,11 @@ namespace ComputerRepairShop.Forms
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
